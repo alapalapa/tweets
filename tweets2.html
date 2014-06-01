@@ -1,0 +1,36 @@
+<DOCTYPE html>
+<html>
+<head>
+	<title>Tweets</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+
+		  var tweets = 1;
+
+		  $.ajax({
+
+		    url: "http://twitter.com/statuses/user_timeline/testingx7.json?&count=" + tweets +"&callback=?",
+		    dataType: "json",
+		    timeout: 15000,
+
+		    success: function(data) {
+		      for (i=0; i<data.length; i++) {
+		        $("#twitter").append("" + data[i].text);
+		        $("#twitter").append("" + data[i].created_at +"");
+		      }
+		    },
+
+		    error: function() {
+		      alert("Failure!");
+		    }
+
+		  });
+
+		});
+	</script>
+</head>
+<body>
+	<div id="twitter"></div>
+</body>
+</html>
